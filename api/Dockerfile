@@ -6,3 +6,5 @@ RUN pip install -r requirements.txt
 
 COPY ./app /app/app
 COPY ./model /app/model
+
+#WORKDIR /app
