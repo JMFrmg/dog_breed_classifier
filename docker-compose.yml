@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  api:
+    container_name: dog-breed-api
+    build: ./api
+    ports:
+      - "8001:80"
+    volumes:
+      - ./api/app:/app/app
