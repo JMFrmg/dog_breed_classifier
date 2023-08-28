@@ -61,3 +61,17 @@ async def startup_event():
         "transform": transform,
         "model": model
     }
+
+@app.post("/api/v1/predict")
+def do_predict(img_bytes: bytes=File(...)):
+    img = Image.open(io.BytesIO(img_bytes))  # Bytes to PIL image
+
+    with torch.no_grad():
+        logger.info("Process prediction.")
+        img_tensor = app.package["transform"](img)
+        img_tensor = img_tensor[None,:]
+        pred = app.package["model"](img_tensor).argmax(dim=1).numpy()
+
+    breed = app.package["id_to_class"][pred[0]]
+    logger.info(f"Breed predicted : {breed}")
+    return {"breed": breed}
