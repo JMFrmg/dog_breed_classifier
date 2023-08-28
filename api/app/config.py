@@ -1,8 +1,8 @@
 import torch
 
 GLOBAL_CONFIG = {
-    "WEIGHTS_PATH": "/app/model_files/inference_model.pt",
-    "CLASS_MAP_PATH": "/app/model_files/reverse_class_map.pickle",
+    "WEIGHTS_PATH": "/code/app/model_files/inference_model.pt",
+    "CLASS_MAP_PATH": "/code/app/model_files/reverse_class_map.pickle",
     "USE_CUDA_IF_AVAILABLE": True,
     "GPU_ID": 0
 }
