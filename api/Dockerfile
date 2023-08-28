@@ -5,8 +5,12 @@ WORKDIR /code
 COPY ./requirements.txt /code/requirements.txt
  
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
- 
-COPY ./app /code/app
-COPY ./model /code/model
- 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", ${PORT}]
+
+COPY ./start.sh /start.sh
+RUN chmod +x /start.sh
+
+COPY ./app /app
+COPY ./model_files /app/model_files
+
+CMD ["/start.sh"]
+#CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", ${PORT}]
