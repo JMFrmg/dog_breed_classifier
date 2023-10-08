@@ -2,8 +2,32 @@ version: "3.9"
 services:
   api:
     container_name: dog-breed-api
+    hostname: dog-breed-api
     build: ./api
+    networks:
+      - dog-breed-app
     ports:
-      - "8001:80"
+      - "8001:8000"
     volumes:
       - ./api/app:/app/app
+
+  frontend:
+    container_name: dog-breed-frontend
+    hostname : dog-breed-frontend
+    build: ./frontend
+    networks:
+      - dog-breed-web
+      - dog-breed-app
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./frontend/app:/code
+    depends_on:
+      - api
+
+networks:
+  dog-breed-web:
+    external: true
+  dog-breed-app:
+    name: dog-breed-app
+    driver: bridge
