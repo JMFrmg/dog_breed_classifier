@@ -13,4 +13,4 @@ COPY ./app /code/app
 COPY ./model_files /code/app/model_files
 
 CMD ["/start.sh"]
-#CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", ${PORT}]
+#CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", 8000]
